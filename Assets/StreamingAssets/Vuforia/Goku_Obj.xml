@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="Goku_Obj" motionHint="adaptive" trackingMode="car" optimizeTrackingFor="default"/>
+
+</Tracking>
+
+<Assembly name="Goku_Objs_assembly" assemblyId="ecf5a14d0ce5423a95276e16c1c13fc6">
+<Part name="Goku_Obj" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="GuideView_0000" translation="-0.0342296 0.252373 1.03079" rotation="AD: 0.999992 0.0294924 -0.14094 203.403" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0001" translation="-0.0353034 0.289422 0.907674" rotation="AD: 1 -0.00182863 -0.122443 178.301" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0002" translation="-0.044069 0.268244 0.994767" rotation="AD: 0.999999 -0.0155322 0.0905303 199.391" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARConfig>

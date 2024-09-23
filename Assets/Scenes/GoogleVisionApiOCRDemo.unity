@@ -851,7 +851,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   url: https://vision.googleapis.com/v1/images:annotate?key=
   keys: {fileID: 11400000, guid: 3d191ea4afeac479ea9bb87f845457fc, type: 2}
-  apiKey: 
   captureIntervalSeconds: 5
   requestedWidth: 640
   requestedHeight: 480

@@ -72,3 +72,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/Settings/GoogleApiKey.asset
 Assets/Settings/GoogleApiKey.asset.meta
+Packages/com.ptc.vuforia.engine-10.25.4.tgz

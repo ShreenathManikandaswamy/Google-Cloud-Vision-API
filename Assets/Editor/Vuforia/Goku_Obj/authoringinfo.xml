@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="27.0" toolVersion="10.25.5">
+<ModelTarget name="Goku_Obj" targetId="9f6cc44d8d614b778bc174e046b3ea0e" version="14.0" toolVersion="10.25.5" bbox="-0.253493 0.019387 -0.169865 0.171028 0.557990 0.208918" previewImage="9f6cc44d8d614b778bc174e046b3ea0e_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Goku_Objs_assembly" assemblyId="ecf5a14d0ce5423a95276e16c1c13fc6">
+<Part name="Goku_Obj" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="GuideView_0000" translation="-0.0342296 0.252373 1.03079" rotation="AD: 0.999992 0.0294924 -0.14094 203.403" image="Goku_Obj_GuideView_0000.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0001" translation="-0.0353034 0.289422 0.907674" rotation="AD: 1 -0.00182863 -0.122443 178.301" image="Goku_Obj_GuideView_0001.png" trained="no">
+
+</EntryPoint>
+<EntryPoint name="GuideView_0002" translation="-0.044069 0.268244 0.994767" rotation="AD: 0.999999 -0.0155322 0.0905303 199.391" image="Goku_Obj_GuideView_0002.png" trained="no">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARInfo>
