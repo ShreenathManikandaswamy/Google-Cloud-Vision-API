@@ -10,13 +10,20 @@ public class ObjectHelper : MonoBehaviour
     [SerializeField]
     private Transform parent;
 
-    public void ShowAnnotations(LocalizedObjectAnnotation[] obj, int titleValue)
+    public void ShowAnnotations(LocalizedObjectAnnotation[] obj, string titleValue)
     {
-        title.text = "Object " + titleValue;
-        foreach(LocalizedObjectAnnotation res in obj)
+        if (!string.IsNullOrEmpty(titleValue))
+            title.text = "Object " + titleValue;
+        else
+            Destroy(title.gameObject);
+
+        if (obj != null)
         {
-            TextMeshProUGUI instance = Instantiate(textPrefab, parent);
-            instance.text = res.Name + " -- " + (res.Score * 100).ToString("F2") + " %";
+            foreach (LocalizedObjectAnnotation res in obj)
+            {
+                TextMeshProUGUI instance = Instantiate(textPrefab, parent);
+                instance.text = res.Name + " -- " + (res.Score * 100).ToString("F2") + " %";
+            }
         }
     }
 }

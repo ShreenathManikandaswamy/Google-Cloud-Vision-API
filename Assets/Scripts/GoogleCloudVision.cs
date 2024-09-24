@@ -18,6 +18,7 @@ public class GoogleCloudVision : MonoBehaviour
 
 	public GoogleVisionManager googleVision;
 
+	Coroutine activeCoroutine;
 	Color[] pixels;
 	string apiKey = "";
 	Texture2D texture2D;
@@ -71,8 +72,6 @@ public class GoogleCloudVision : MonoBehaviour
 
 		if (apiKey == null || apiKey == "")
 			Debug.LogError("No API key. Please set your API key into the \"Web Cam Texture To Cloud Vision(Script)\" component.");
-
-		StartCoroutine(Capture());
 	}
 
 	void ProcessResponse(string response)
@@ -99,6 +98,17 @@ public class GoogleCloudVision : MonoBehaviour
 		MultiAnnotationsResponseData multiAnnotations = JsonConvert.DeserializeObject<MultiAnnotationsResponseData>(response);
 		googleVision.ShowObject(multiAnnotations);
 	}
+
+	public void StartCloudVision()
+    {
+		activeCoroutine = StartCoroutine(Capture());
+    }
+
+	public void StopCoroutine()
+    {
+		if (activeCoroutine != null)
+			StopCoroutine(activeCoroutine);
+    }
 
 	public void SendVuforiaCameraData(Texture2D camData)
     {
