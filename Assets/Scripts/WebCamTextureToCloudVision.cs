@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using SimpleJSON;
+using Newtonsoft.Json;
 
 public class WebCamTextureToCloudVision : MonoBehaviour {
 
@@ -13,8 +14,7 @@ public class WebCamTextureToCloudVision : MonoBehaviour {
 	public int requestedHeight = 480;
 	public FeatureType featureType = FeatureType.TEXT_DETECTION;
 	public int maxResults = 10;
-	public GameObject resPanel;
-	public Text responseText, responseArray;
+	public GoogleVisionManager googleVision;
 
 	string apiKey = "";
 	WebCamTexture webcamTexture;
@@ -94,6 +94,9 @@ public class WebCamTextureToCloudVision : MonoBehaviour {
 			case FeatureType.LOGO_DETECTION:
 				ProcessLogoDetectionResponse(response);
 				break;
+			case FeatureType.OBJECT_LOCALIZATION:
+				ProcessMultiDetectionResponse(response);
+				break;
         }
     }
 
@@ -103,9 +106,15 @@ public class WebCamTextureToCloudVision : MonoBehaviour {
 		Debug.Log(annotations.Responses[0].LogoAnnotations[0].Description);
 	}
 
-    #region Google Cloud Vision API
+	public void ProcessMultiDetectionResponse(string response)
+	{
+		MultiAnnotationsResponseData multiAnnotations = JsonConvert.DeserializeObject<MultiAnnotationsResponseData>(response);
+		googleVision.ShowObject(multiAnnotations);
+	}
 
-    private IEnumerator Capture() {
+	#region Google Cloud Vision API
+
+	private IEnumerator Capture() {
 		while (true) {
 			if (this.apiKey == null)
 				yield return null;
@@ -151,19 +160,6 @@ public class WebCamTextureToCloudVision : MonoBehaviour {
 						Debug.Log(responses);
 						JSONNode res = JSON.Parse(responses);
 						string fullText = res["responses"][0]["textAnnotations"][0]["description"].ToString().Trim('"');
-						if (fullText != ""){
-							Debug.Log("OCR Response: " + fullText);
-							resPanel.SetActive(true);
-							responseText.text = fullText.Replace("\\n", " ");
-							fullText = fullText.Replace("\\n", ";");
-							string[] texts = fullText.Split(';');
-							responseArray.text = "";
-							for(int i=0;i<texts.Length;i++){
-								responseArray.text += texts[i];
-								if(i != texts.Length - 1)
-									responseArray.text += ", ";
-							}
-						}
 						ProcessResponse(responses);
 					} else {
 						Debug.Log("Error: " + www.error);
