@@ -182,34 +182,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   OnTargetFound:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1245561772}
-        m_TargetAssemblyTypeName: GoogleVisionManager, Assembly-CSharp
-        m_MethodName: GokuDetected
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnTargetLost:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1245561772}
-        m_TargetAssemblyTypeName: GoogleVisionManager, Assembly-CSharp
-        m_MethodName: GokuLost
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &139074336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +360,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1893892710}
-  - {fileID: 256292680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -392,41 +367,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &256292679
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 256292680}
-  m_Layer: 5
-  m_Name: ScanOutput
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &256292680
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256292679}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 217242840}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1014238257
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22212901312dd478ea983b11848941b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 1245561772}
   cloudVision: {fileID: 1236354037}
 --- !u!1 &1236354035
 GameObject:
@@ -690,12 +631,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectHelperPrefab: {fileID: 8375584681736706024, guid: c952262ee56a140c2aa616487935ea26,
     type: 3}
-  parent: {fileID: 256292680}
-  vuforiaCam: {fileID: 1110779571}
-  modelTarget: {fileID: 139074333}
-  scanOutput: {fileID: 256292679}
-  waitTime: 5
-  cloudVision: {fileID: 1236354037}
+  parent: {fileID: 0}
+  tables:
+  - {fileID: 11400000, guid: a33773e1514284d7c9e58755edf273b4, type: 2}
+  - {fileID: 11400000, guid: abfe6ff89201743b5a23476b3ab91c3c, type: 2}
 --- !u!1 &1267010677
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +667,53 @@ Transform:
   - {fileID: 1110779570}
   - {fileID: 1236354036}
   - {fileID: 1245561771}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1376857537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1376857539}
+  - component: {fileID: 1376857538}
+  m_Layer: 0
+  m_Name: NotificationInstance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1376857538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376857537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8403afcb55eec41cf9bb8c9bb190f6f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationPrefab: {fileID: 947310073988853652, guid: 3224a23cfbf064d25963cd3b8e796bbc,
+    type: 3}
+  notificationParent: {fileID: 217242840}
+--- !u!4 &1376857539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376857537}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 247.20183, y: 957.3096, z: -15.447535}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1893892709
@@ -813,10 +799,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1245561772}
-        m_TargetAssemblyTypeName: GoogleVisionManager, Assembly-CSharp
-        m_MethodName: StartScanning
+      - m_Target: {fileID: 1110779571}
+        m_TargetAssemblyTypeName: VuforiaCamAccess, Assembly-CSharp
+        m_MethodName: ScanBarCode
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1893892709}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1074,3 +1072,4 @@ SceneRoots:
   - {fileID: 2113098124}
   - {fileID: 217242840}
   - {fileID: 139074337}
+  - {fileID: 1376857539}

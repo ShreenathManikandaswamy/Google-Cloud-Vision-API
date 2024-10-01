@@ -1,5 +1,4 @@
-using System.Collections;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GoogleVisionManager : MonoBehaviour
@@ -9,26 +8,10 @@ public class GoogleVisionManager : MonoBehaviour
     [SerializeField]
     private Transform parent;
     [SerializeField]
-    private VuforiaCamAccess vuforiaCam;
-    [SerializeField]
-    private GameObject modelTarget;
-    [SerializeField]
-    private GameObject scanOutput;
-    [SerializeField]
-    private int waitTime = 5;
-    [SerializeField]
-    private GoogleCloudVision cloudVision;
+    private List<TableSorter> tables;
 
     private ObjectHelper instance;
-    private bool vuforiaDetected = false;
-
-    public void StartScanning()
-    {
-        modelTarget.SetActive(true);
-        vuforiaCam.DontSendDataToCloud();
-        cloudVision.StopCoroutine();
-        StartCoroutine(Wait());
-    }
+    private TableSorter currentTable;
 
     public void ShowObject(MultiAnnotationsResponseData obj)
     {
@@ -48,37 +31,15 @@ public class GoogleVisionManager : MonoBehaviour
         }
     }
 
-    private void ScanMLModel()
+    public void SetCurrentTable(string tableId)
     {
-        modelTarget.SetActive(false);
-        vuforiaCam.SendDataToCloud();
-        cloudVision.StartCloudVision();
-    }
-
-    public void GokuDetected()
-    {
-        if (instance != null)
+        foreach(TableSorter table in tables)
         {
-            Destroy(instance.gameObject);
+            if (table.tableName == tableId)
+                currentTable = table;
         }
 
-        instance = Instantiate(objectHelperPrefab, parent);
-        instance.ShowAnnotations(null, "Goku Detected");
-        vuforiaDetected = true;
-    }
-
-    public void GokuLost()
-    {
-        if(instance != null)
-        {
-            Destroy(instance.gameObject);
-        }
-    }
-
-    private IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(waitTime);
-        if (vuforiaDetected == false)
-            ScanMLModel();
+        Debug.Log(currentTable.tableName);
+        Notification.Instance.ShowNotification("Current Table = " + currentTable.tableName, 5);
     }
 }

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using ZXing;
 using Vuforia;
 
 public class VuforiaCamAccess : MonoBehaviour
@@ -7,9 +7,18 @@ public class VuforiaCamAccess : MonoBehaviour
     private PixelFormat mPixelFormat = PixelFormat.RGB888;
     private bool mFormatRegistered = false;
     private Texture2D texture;
+    private IBarcodeReader barcodeReader = new BarcodeReader();
+    private bool isScanningBarcore = false;
 
+    public GoogleVisionManager manager;
     public GoogleCloudVision cloudVision;
     private bool isSendDataToCloud = false;
+
+    public void ScanBarCode()
+    {
+        isScanningBarcore = true;
+        Notification.Instance.ShowNotification("Scan QR Code on Table", 5);
+    }
 
     void Start()
     {
@@ -28,6 +37,20 @@ public class VuforiaCamAccess : MonoBehaviour
             texture.Apply();
             if(isSendDataToCloud)
                 cloudVision.SendVuforiaCameraData(texture);
+            if(isScanningBarcore)
+            {
+                if (texture.width > 0)
+                {
+                    Result result = barcodeReader.Decode(texture.GetPixels32(), texture.width, texture.height);
+
+                    if (result != null)
+                    {
+                        isScanningBarcore = false;
+                        manager.SetCurrentTable(result.Text);
+                        Notification.Instance.CloseNotification();
+                    }
+                }
+            }
         }
     }
 
